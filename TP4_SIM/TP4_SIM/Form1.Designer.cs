@@ -78,7 +78,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(1087, 400);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.TabIndex = 4;
             // 
             // label1
             // 
@@ -95,7 +95,7 @@
             this.txt_simulaciones.Location = new System.Drawing.Point(188, 50);
             this.txt_simulaciones.Name = "txt_simulaciones";
             this.txt_simulaciones.Size = new System.Drawing.Size(100, 20);
-            this.txt_simulaciones.TabIndex = 2;
+            this.txt_simulaciones.TabIndex = 0;
             this.txt_simulaciones.TextChanged += new System.EventHandler(this.txt_simulaciones_TextChanged);
             this.txt_simulaciones.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloNumeros);
             // 
@@ -114,7 +114,7 @@
             this.txt_desde.Location = new System.Drawing.Point(188, 105);
             this.txt_desde.Name = "txt_desde";
             this.txt_desde.Size = new System.Drawing.Size(100, 20);
-            this.txt_desde.TabIndex = 4;
+            this.txt_desde.TabIndex = 1;
             this.txt_desde.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloNumeros);
             // 
             // btn_comenzar
@@ -123,7 +123,7 @@
             this.btn_comenzar.Location = new System.Drawing.Point(932, 603);
             this.btn_comenzar.Name = "btn_comenzar";
             this.btn_comenzar.Size = new System.Drawing.Size(167, 36);
-            this.btn_comenzar.TabIndex = 5;
+            this.btn_comenzar.TabIndex = 3;
             this.btn_comenzar.Text = "Comenzar";
             this.btn_comenzar.UseVisualStyleBackColor = true;
             this.btn_comenzar.Click += new System.EventHandler(this.btn_comenzar_Click);
@@ -143,7 +143,7 @@
             this.txt_hasta.Location = new System.Drawing.Point(412, 107);
             this.txt_hasta.Name = "txt_hasta";
             this.txt_hasta.Size = new System.Drawing.Size(100, 20);
-            this.txt_hasta.TabIndex = 7;
+            this.txt_hasta.TabIndex = 2;
             this.txt_hasta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloNumeros);
             // 
             // Column1
