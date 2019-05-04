@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace TP4_SIM
 {
     public partial class Form1 : Form
-    {      
+    {
         private uint cantSimulaciones = 0;
         private uint desde, hasta = 0;
         private GestorDatos gestorDatos = null;
@@ -29,18 +29,19 @@ namespace TP4_SIM
         private void btn_comenzar_Click(object sender, EventArgs e)
         {
             if (ValidarTextBox()) return; //return solo corta el metodo
-            
+
             if (flag == true)
             {
-                gestorDatos.CargarDatos(this.cantSimulaciones);
+                gestorDatos.CargarDatos(this.cantSimulaciones, (int)desde);
                 gestorTabla = new GestorTabla(this.dataGridView1);
-                gestorTabla.CompletarTabla(desde - 1, hasta - 1, gestorDatos.GetDatos());
+                //gestorTabla.CompletarTabla(desde - 1, hasta - 1, gestorDatos.GetDatos());
+                gestorTabla.CompletarTabla(gestorDatos.GetDatos());
                 flag = false;
                
             }
             else
             {
-                gestorTabla.CompletarTabla(desde - 1, hasta - 1, gestorDatos.GetDatos());
+                gestorTabla.CompletarTabla(gestorDatos.GetDatos());
             }
             
         }
@@ -61,7 +62,6 @@ namespace TP4_SIM
         private void LeerTextBoxDesdeHasta()
         {
             this.desde = uint.Parse(this.txt_desde.Text);
-            this.hasta = uint.Parse(this.txt_hasta.Text);
         }
 
         private void txt_simulaciones_TextChanged(object sender, EventArgs e)
@@ -69,9 +69,14 @@ namespace TP4_SIM
             flag = true;
         }
 
+        private void txt_desde_TextChanged(object sender, EventArgs e)
+        {
+            flag = true;
+        }
+
         private bool ValidarTextBox()
         {
-            if (this.txt_simulaciones.Text == "" || this.txt_simulaciones.Text == "")
+            if (this.txt_simulaciones.Text == "")
             {
                 MessageBox.Show("No cargo la cantidad de simulaciones a realizar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;
@@ -79,43 +84,27 @@ namespace TP4_SIM
             this.LeerTextBoxSimulaciones();
 
 
-            if (this.txt_desde.Text == "" && this.txt_hasta.Text == "")
+            if (this.txt_desde.Text == "")
             {
                 if (cantSimulaciones <= 100)
                 {
                     desde = 1;
-                    hasta = cantSimulaciones;
                 }    
                 else
                 {
                     desde = cantSimulaciones - 100;
-                    hasta = cantSimulaciones;
-                }
+                }                
             }
             else
             {
                 LeerTextBoxDesdeHasta();
-                if (this.txt_desde.Text == "" || this.txt_hasta.Text == "")
-                {
-                    MessageBox.Show("Ingrese un rango valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return true;
-                }
-                else
-                {
-                    if ((this.txt_desde.Text.Substring(0, 1) == "0" || this.txt_hasta.Text.Substring(0, 1) == "0"))
-                    {
-                        MessageBox.Show("Ingrese un rango valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return true;
-                    }
-                }
-            }           
-                     
 
-            if (this.hasta > cantSimulaciones || hasta < desde)
-            {
-                MessageBox.Show("Ingrese un rango valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return true;
+                if (desde > cantSimulaciones)
+                {
+                    MessageBox.Show("Ingrese rango válido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
+            
             return false;
         }    
     }

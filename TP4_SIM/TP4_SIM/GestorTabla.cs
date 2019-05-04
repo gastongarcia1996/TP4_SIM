@@ -16,13 +16,15 @@ namespace TP4_SIM
             this.tabla = tabla;
         }
 
-        public void CompletarTabla(uint desde, uint hasta, double[,] datos)
+        public void CompletarTabla(double[,] datos)
         {
             tabla.Rows.Clear();
 
             int fila = 0;
-            for (uint i = desde; i <= hasta; i++)
+            for (uint i = 0; i < datos.GetLength(0); i++)
             {
+                if (datos[i, 0] == 0) break;
+
                 tabla.Rows.Add();
                 tabla.Rows[fila].Cells[0].Value = datos[i, 0];
                 tabla.Rows[fila].Cells[1].Value = datos[i, 1];
