@@ -16,6 +16,7 @@ namespace TP4_SIM
         private uint desde, hasta = 0;
         private GestorDatos gestorDatos = null;
         private GestorTabla gestorTabla = null;
+        private GestorTabla gestorTablaResultado = null;
         private bool flag = false;
 
         public Form1()
@@ -34,8 +35,10 @@ namespace TP4_SIM
             {
                 gestorDatos.CargarDatos(this.cantSimulaciones, (int)desde);
                 gestorTabla = new GestorTabla(this.dataGridView1);
+                gestorTablaResultado = new GestorTabla(this.dataGridView2);
                 //gestorTabla.CompletarTabla(desde - 1, hasta - 1, gestorDatos.GetDatos());
                 gestorTabla.CompletarTabla(gestorDatos.GetDatos());
+                gestorTablaResultado.CompletarTabla(gestorDatos.GetResultado());
                 flag = false;
                
             }
@@ -99,9 +102,10 @@ namespace TP4_SIM
             {
                 LeerTextBoxDesdeHasta();
 
-                if (desde > cantSimulaciones)
+                if (desde > cantSimulaciones || desde == 0)
                 {
                     MessageBox.Show("Ingrese rango válido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
                 }
             }
             

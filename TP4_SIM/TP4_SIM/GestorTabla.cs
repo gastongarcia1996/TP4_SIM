@@ -44,6 +44,11 @@ namespace TP4_SIM
             }
         }
 
+        public void CompletarTablaResultado()
+        {
+
+        }
+
         private string CadenaAuxiliarTabla(double dato)
         {
             if (dato.ToString().Equals("-1"))

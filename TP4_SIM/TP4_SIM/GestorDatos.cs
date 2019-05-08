@@ -12,13 +12,14 @@ namespace TP4_SIM
         private double[,] tiempoEntregaXSemana;
         private int[,] bicicletasDañadas;
         private double[,] matrizDatos;
+        private double[,] resultados;
         private Random random = new Random();
 
         public GestorDatos()
         {
             this.demandaXSemana = new int[4, 3];
             this.tiempoEntregaXSemana = new double[3, 3];
-            this.bicicletasDañadas = new int[2, 3];           
+            this.bicicletasDañadas = new int[2, 3]; 
         }
 
         //public void CargarDatos(uint cantSimulaciones)
@@ -51,7 +52,8 @@ namespace TP4_SIM
         {
             uint hasta = 100;
             double[,] datos = new double[101, 13];
-            
+            this.resultados = new double[1, 13];
+
             uint nroExp = 1;
             int stock = 7;
             double rnd1 = this.GenerarRandom(1, 100, false); ;
@@ -111,6 +113,20 @@ namespace TP4_SIM
                 }                         
             }
             this.matrizDatos = datos;
+
+            this.resultados[0, 0] = nroExp;
+            this.resultados[0, 1] = stock;
+            this.resultados[0, 2] = rnd1;
+            this.resultados[0, 3] = cantDemanda;
+            this.resultados[0, 4] = rnd2;
+            this.resultados[0, 5] = semamaLlegaPedido;
+            this.resultados[0, 6] = rnd3;
+            this.resultados[0, 7] = cantBicisRotas;
+            this.resultados[0, 8] = costoTenencia;
+            this.resultados[0, 9] = costoPedido;
+            this.resultados[0, 10] = costoAgotamiento;
+            this.resultados[0, 11] = costoTotal;
+            this.resultados[0, 12] = costoAcumulado;
         }
 
         private double LogicaCantBicicletasRotas(double random, ref int stock)
@@ -286,6 +302,11 @@ namespace TP4_SIM
             this.bicicletasDañadas[1, 0] = 3;
             this.bicicletasDañadas[1, 1] = 30;
             this.bicicletasDañadas[1, 2] = 100;
+        }
+
+        public double[,] GetResultado()
+        {
+            return resultados;
         }
     }
 }
